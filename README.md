@@ -51,9 +51,9 @@ Nodes in the Kubernetes cluster experienced "CrashLoopBackOff" errors and failed
 #### The S-Tier Solution:
 Utilized Pi-hole **Client Group Management** to isolate cluster traffic from the 1.12M+ blocklist while maintaining local DNS resolution.
 
-1.  **Group Creation:** Established a new group named `K8s_Bypass`.
+1.  **Group Creation:** Established a new group named `K3s_Bypass`.
 2.  **Assignment:** Added cluster node IP addresses (e.g., Io, Europa) as clients.
-3.  **Policy:** Removed clients from the `Default` group and assigned them exclusively to `K8s_Bypass`.
+3.  **Policy:** Removed clients from the `Default` group and assigned them exclusively to `K3s_Bypass`.
 4.  **Result:** Cluster nodes receive unfiltered DNS resolution, while the rest of the network remains protected.
 
 ### Common Handshake Fixes
