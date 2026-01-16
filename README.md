@@ -24,3 +24,44 @@ To allow VPN clients to access the internet through the Pi's Ethernet interface,
 ```bash
 sudo iptables -t nat -A POSTROUTING -s 10.228.35.0/24 -o eth0 -j MASQUERADE
 sudo netfilter-persistent save
+
+### 2. DNS Interface Tuning
+Because VPN clients reside on a virtual subnet (`10.228.35.x`), Pi-hole was adjusted to allow requests from non-local origins:
+* **Setting:** `Permit all origins` (Securely gated behind the Nest Wifi Pro firewall). This allows the Pi to answer DNS queries originating from the WireGuard interface.
+
+### 3. Service Whitelisting
+To prevent "over-filtering" of essential services, the following surgical whitelists are applied:
+* **Financial:** `experian.com`, `intuit.com`.
+* **Productivity (Google Sync):** `volatile-pa.googleapis.com`, `userlocation.googleapis.com`.
+* **Infrastructure:** `verizon.com`.
+
+## 📱 Mobile Integration
+The setup utilizes **WireGuard On-Demand** (Android 16 "Always-on") with specific App Exclusions (Split-Tunneling) to maintain system stability:
+* **Excluded Apps:** Android Auto, Google Play Services (to permit Wireless Projection).
+* **MTU:** Hard-coded to `1280` for maximum compatibility across disparate cellular carriers and to prevent packet fragmentation.
+
+## 🛠️ Troubleshooting & Dev-Ops Integration
+
+### Kubernetes (K8s) Cluster Bypass
+Aggressive DNS filtering can interfere with K8s service discovery and node-to-node heartbeats. To prevent **TON618** from disrupting cluster operations, a **Zero-Filtering Group** was implemented.
+
+#### The Problem:
+Nodes in the Kubernetes cluster experienced "CrashLoopBackOff" errors and failed API handshakes due to blocked telemetry and internal service discovery domains.
+
+#### The S-Tier Solution:
+Utilized Pi-hole **Client Group Management** to isolate cluster traffic from the 1.12M+ blocklist while maintaining local DNS resolution.
+
+1.  **Group Creation:** Established a new group named `K8s_Bypass`.
+2.  **Assignment:** Added cluster node IP addresses (e.g., Io, Europa) as clients.
+3.  **Policy:** Removed clients from the `Default` group and assigned them exclusively to `K8s_Bypass`.
+4.  **Result:** Cluster nodes receive unfiltered DNS resolution, while the rest of the network remains protected.
+
+### Common Handshake Fixes
+| Service | Category | Mitigation Strategy |
+| :--- | :--- | :--- |
+| **Google Keep** | Sync | Whitelist `volatile-pa.googleapis.com` |
+| **Android Auto** | Connectivity | Exclude "Android Auto" & "Play Services" from VPN |
+| **Credit Reports**| Finance | Whitelist `experian.com` (Wildcard) |
+| **Nest Wifi Pro** | Mesh | Ensure `eth0` is the primary interface for `MASQUERADE` |
+
+---
