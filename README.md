@@ -42,8 +42,8 @@ The setup utilizes **WireGuard On-Demand** (Android 16 "Always-on") with specifi
 
 ## 🛠️ Troubleshooting & Dev-Ops Integration
 
-### Kubernetes (K8s) Cluster Bypass
-Aggressive DNS filtering can interfere with K8s service discovery and node-to-node heartbeats. To prevent **TON618** from disrupting cluster operations, a **Zero-Filtering Group** was implemented.
+### Kubernetes (K3s) Cluster Bypass
+Aggressive DNS filtering can interfere with K3s service discovery and node-to-node heartbeats. To prevent **TON618** from disrupting cluster operations, a **Zero-Filtering Group** was implemented.
 
 #### The Problem:
 Nodes in the Kubernetes cluster experienced "CrashLoopBackOff" errors and failed API handshakes due to blocked telemetry and internal service discovery domains.
