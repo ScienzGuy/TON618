@@ -24,7 +24,7 @@ To allow VPN clients to access the internet through the Pi's Ethernet interface,
 ```bash
 sudo iptables -t nat -A POSTROUTING -s 10.228.35.0/24 -o eth0 -j MASQUERADE
 sudo netfilter-persistent save
-
+```markdown
 ### 2. DNS Interface Tuning
 Because VPN clients reside on a virtual subnet (`10.228.35.x`), Pi-hole was adjusted to allow requests from non-local origins:
 * **Setting:** `Permit all origins` (Securely gated behind the Nest Wifi Pro firewall). This allows the Pi to answer DNS queries originating from the WireGuard interface.
@@ -65,3 +65,6 @@ Utilized Pi-hole **Client Group Management** to isolate cluster traffic from the
 | **Nest Wifi Pro** | Mesh | Ensure `eth0` is the primary interface for `MASQUERADE` |
 
 ---
+
+## 👨‍💻 Maintainer
+**Jason W. Bliss** [@ScienzGuy](https://github.com/ScienzGuy)
