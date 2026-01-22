@@ -1,4 +1,4 @@
-# TON618: The S-Tier Network Black Hole 🕳️
+# Pi Project: TON618 - S-Tier Network Black Hole 🕳️
 
 Named after the most massive black hole known to science, **TON618** is a Raspberry Pi-powered network appliance designed to pull every ad, tracker, and malicious domain into an unescapable singularity. This project combines **Pi-hole** and **PiVPN (WireGuard)** to provide aggressive, surgical-grade filtering for a residential network and mobile devices.
 
