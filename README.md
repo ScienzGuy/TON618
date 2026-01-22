@@ -1,6 +1,6 @@
 # Pi Project: TON618 - S-Tier Network Black Hole 🕳️
 
-Named after the most massive black hole known to science, **TON618** is a Raspberry Pi-powered network appliance designed to pull every ad, tracker, and malicious domain into an 1nescapable singularity. This project combines **Pi-hole** and **PiVPN (WireGuard)** to provide aggressive, surgical-grade filtering for a residential network and mobile devices.
+Named after the most massive black hole known to science, **TON618** is a Raspberry Pi-powered network appliance designed to pull every ad, tracker, and malicious domain into an inescapable singularity. This project combines **Pi-hole** and **PiVPN (WireGuard)** to provide aggressive, surgical-grade filtering for a residential network and mobile devices.
 
 ## 🚀 Overview
 TON618 serves as the primary DNS gateway for a high-performance home network (anchored by a Nest Wifi Pro mesh system). It extends this protection to mobile devices via an encrypted WireGuard tunnel, ensuring an ad-free experience even on 5G/cellular networks.
@@ -17,7 +17,7 @@ TON618 serves as the primary DNS gateway for a high-performance home network (an
 * **Network:** Gigabit Ethernet (Hardwired to primary mesh node).
 
 ## ⚙️ Surgical Configurations
-This repository documents the specific "Day 2" fixes required to stabilize high-density filtering on Android 16 and enterprise-grade mesh environments.
+This repository documents the specific "Day 2" fixes required to stabilize high-density filtering on Android and enterprise-grade mesh environments.
 
 ### 1. The VPN-to-WAN Bridge (Masquerade)
 To allow VPN clients to access the internet through the Pi's Ethernet interface, a manual NAT masquerade was required:
@@ -36,7 +36,7 @@ To prevent "over-filtering" of essential services, the following surgical whitel
 * **Infrastructure:** `verizon.com`.
 
 ## 📱 Mobile Integration
-The setup utilizes **WireGuard On-Demand** (Android 16 "Always-on") with specific App Exclusions (Split-Tunneling) to maintain system stability:
+The setup utilizes **WireGuard On-Demand** (Android "Always-on") with specific App Exclusions (Split-Tunneling) to maintain system stability:
 * **Excluded Apps:** Android Auto, Google Play Services (to permit Wireless Projection).
 * **MTU:** Hard-coded to `1280` for maximum compatibility across disparate cellular carriers and to prevent packet fragmentation.
 
@@ -52,7 +52,7 @@ Nodes in the Kubernetes cluster experienced "CrashLoopBackOff" errors and failed
 Utilized Pi-hole **Client Group Management** to isolate cluster traffic from the 1.12M+ blocklist while maintaining local DNS resolution.
 
 1.  **Group Creation:** Established a new group named `K3s_Bypass`.
-2.  **Assignment:** Added cluster node IP addresses (e.g., Io, Europa) as clients.
+2.  **Assignment:** Added cluster node IP addresses (for other Pi projects) as clients.
 3.  **Policy:** Removed clients from the `Default` group and assigned them exclusively to `K3s_Bypass`.
 4.  **Result:** Cluster nodes receive unfiltered DNS resolution, while the rest of the network remains protected.
 
@@ -65,6 +65,3 @@ Utilized Pi-hole **Client Group Management** to isolate cluster traffic from the
 | **Nest Wifi Pro** | Mesh | Ensure `eth0` is the primary interface for `MASQUERADE` |
 
 ---
-
-## 👨‍💻 Maintainer
-**Jason W. Bliss** [@ScienzGuy](https://github.com/ScienzGuy)
