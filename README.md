@@ -64,5 +64,5 @@ The singularity is maintained via a custom administrative suite for 24/7 stabili
 | Project | Role | Tech Stack |
 | :--- | :--- | :--- |
 | **TON618** | Standalone Sentry (Security) | Pi-hole, Unbound, WireGuard |
-| **[Pi-Ollama](https://github.com/ScienzGuy/Pi-Ollama)** | GAIa Cluster (AI) | Ollama, Pi 5, Open WebUI |
-| **[BOINC-Cluster](https://github.com/ScienzGuy/BOINC)** | Theia Cluster (Compute) | Bare Metal Debian, BOINC |
+| **[Pi-Ollama](https://github.com/ScienzGuy/Pi-Project-GAIa)** | GAIa Cluster (AI) | Docker, Ollama, Open WebUI |
+| **[Pi-BOINC](https://github.com/ScienzGuy/Pi-Project-Theia)** | Theia Cluster (Compute) | Bare Metal Debian, BOINC |
